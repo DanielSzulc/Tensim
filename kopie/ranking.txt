@@ -1,0 +1,6 @@
+"Pos","Id_pl","Name","Surname","Country","Pts","Date"
+0,0,"A","B","c",0,"1971-01-01"
+1,2,"Andre","Agassi","USA",416,"1996-01-18"
+2,3,"Boris","Becker","GER",117,"1996-01-18"
+3,4,"Wayne","Ferreira","RSA",117,"1996-01-18"
+4,1,"Pete","Sampras","USA",6,"1996-01-18"

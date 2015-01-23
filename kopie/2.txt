@@ -1,0 +1,5 @@
+"ID_play","Name","Surname","Country","DOB","Fitness","Skills","Last_match","Surface_B","Surface_W"
+1,"Pete","Sampras","USA","1971-08-12",0.9,93,"1996-01-01","Grass","Clay"
+2,"Andre","Agassi","USA","1970-04-29",0.917057264063616,91,"1996-01-11","Hard","N"
+3,"Boris","Becker","GER","1967-11-22",0.9,87,"1996-01-01","Grass","Clay"
+4,"Wayne","Ferreira","RSA","1971-09-15",0.917057264063616,70,"1996-01-11","Hard","Clay"

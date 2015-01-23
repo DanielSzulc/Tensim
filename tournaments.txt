@@ -1,0 +1,39 @@
+"Name_of_Tournament","Category","Draw","First_Rnd","Start_Date","Surface"
+"Cape Town",4,4,2,
+"Australian Open",1,8,4
+"Wimbledon",1,8,8
+"Hobart",5,4,4
+"Perth",5,8,4
+"Shanghai",5,8,4
+"Zagreb",5,8,4
+"Dubai",3,8,4
+"Marseille",5,8,4
+"San Jose",5,8,4
+"Antwerp",4,8,4	
+"Memphis",3,8,4
+"Philadelphia",4,8,4,"1996-02-26","Hard"
+"Milan",5,8,4,"1996-02-26","Hard"
+"Scottsdale",5,8,4,"1996-03-04","Clay"
+"Rotterdam",3,12,8,"1996-03-04","Hard"
+"Mexico City",5,8,4,"1996-03-04","Clay"
+"Copenhagen",5,8,4,"1996-03-11","Hard"
+"Indian Wells",2,16,8,"1996-03-11","Hard"
+"St Petersburg",5,8,4,"1996-03-19","Hard"
+"Key Biscayne",2,16,8,"1996-03-18","Hard"
+"Casablanca",5,8,4,"1996-03-25","Clay"
+"Calcutta",5,8,4,"1996-04-01","Grass"
+"Hong Kong",5,8,4,"1996-04-08","Hard"
+"Estoril",4,8,4,"1996-04-08","Clay"
+"New Delhi",5,8,4,"1996-04-08","Hard"
+"Barcelona",3,12,8,"1996-04-15","Clay"
+"Bermuda",5,8,4,"1996-04-16","Clay"
+"Tokyo",3,12,8,"1996-04-15","Hard"
+"Monte Carlo",2,16,8,"1996-04-22","Clay"
+"Seoul",5,8,4,"1996-04-23","Hard"
+"Atlanta",5,8,4,"1996-04-29","Clay"
+"Prague",5,8,4,"1996-04-29","Clay"
+"Munich",5,8,4,"1996-04-29","Clay"
+"Houston",5,8,4,"1996-05-07","Clay"
+"Hamburg",2,16,8,"1996-05-06","Clay"
+"Rome",2,16,8,"1996-05-13","Clay"
+"Coral Springs",5,8,4,"1996-05-14","Clay"
