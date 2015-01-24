@@ -11,11 +11,12 @@
 .Rproj.user/
 
 
-# PDF files
+# PDF and TXT files
 *.pdf
+*.txt
 
 #No CSV and ZIP files
 *.csv
 *.zip
-=======
+
 
