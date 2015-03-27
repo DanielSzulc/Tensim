@@ -1,4 +1,5 @@
 library(dplyr)
+library(knitr)
 qualify <-function(app_players,wildcards,total_draw=8,seeded=2) {
         selecting <- db_ranking %>% filter(Date==max(Date)) %>%
                 filter(Id_pl %in% app_players | Id_pl %in% wildcards) %>%
@@ -150,7 +151,7 @@ count_tournaments <- function(){
 }
 
 recommend_tournament <-function(category=5, surface="Hard"){
-        z_rank <- db_ranking %>% filter(Date==max(Date)) %>%
+        z_rank <<- db_ranking %>% filter(Date==max(Date)) %>%
                 select(Id_pl,Pos,Pts) %>% rename(ID_play = Id_pl)
         z_players <- players %>% select(-c(Name,DOB,Skills))
         z_stats <- plyr::join(z_players,z_rank, type="left")
@@ -179,7 +180,7 @@ aux_how_long_ago <-function(date){
 }
 aux_situation <- function(pts){
         if(is.na(pts)) pts<-0
-        pts.key <-sapply(c(1,2,15,16,30,31), function(x) subset(z_rank$Pts,z_rank$Pos==x))
+        pts.key <-sapply(c(1,2,8,9,15,16,30,31), function(x) subset(z_rank$Pts,z_rank$Pos==x))
         key.difference <- abs(pts-pts.key)
         key.difference <- key.difference[!is.na(key.difference & key.difference >0)]
         result<-min(key.difference)
