@@ -136,6 +136,7 @@ match_preview <- function (player1, player2,turnier){
         browseURL("preview.html")
 }
 
+
 count_tournaments <- function(){
         library(tidyr)
         z_tours<-db_matches %>% select(Tournament, Win, Los, Surface) %>% 
@@ -207,4 +208,29 @@ aux_prestige <-function(category=5){
         result<-1/log(category+1,base=3)/category^(0.3)+0.4/category
         result<-(min(result,1.4))
         result
+}
+
+
+matches_by_surface <- function(){
+        z_matches_W<-db_matches %>% select(Tournament, Win, Los, Surface) %>% 
+                gather(Result,ID_play,Win:Los) %>% group_by(ID_play,Surface,Result) %>%
+                summarise(Count = n()) %>% filter(Result=="Win") %>%
+                spread(Surface,Count) %>% group_by(ID_play) %>%
+                mutate(Total_W = sum(Clay,Grass,Hard, na.rm = TRUE)) %>%
+                rename(Clay_W = Clay, Grass_W = Grass, Hard_W= Hard)
+                               
+        z_matches_L<-db_matches %>% select(Tournament, Win, Los, Surface) %>% 
+                gather(Result,ID_play,Win:Los) %>% group_by(ID_play,Surface,Result) %>%
+                summarise(Count = n()) %>% filter(Result=="Los") %>%
+                spread(Surface,Count) %>% group_by(ID_play) %>%
+                mutate(Total_L = sum(Clay,Grass,Hard, na.rm = TRUE)) %>%
+                rename(Clay_L = Clay, Grass_L = Grass, Hard_L= Hard) %>% 
+                select(-Result)
+        z_matches <- plyr::join(z_matches_W, z_matches_L, by = "ID_play", type = "full")         
+                        
+        z_matches <- plyr::join(z_matches,select(players,ID_play, Surname, Country), 
+                                type= "right") %>% 
+                filter(!is.na(Surname))
+        print (select(z_matches,Surname,Country,Total_W, Total_L,Clay_W, 
+                      Clay_L, Grass_W, Grass_L, Hard_W, Hard_L))
 }
