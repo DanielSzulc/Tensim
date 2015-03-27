@@ -135,3 +135,14 @@ match_preview <- function (player1, player2,turnier){
         knit2html("preview.Rmd",quiet = TRUE)
         browseURL("preview.html")
 }
+count_tournaments <- function(){
+        library(tidyr)
+        z_tours<-db_matches %>% select(Tournament, Win, Los, Surface) %>% 
+                gather(Result,ID_play,Win:Los) %>% group_by(ID_play,Surface) %>%
+                summarise(Tournaments = n_distinct(Tournament)) %>%
+                spread(Surface,Tournaments) %>% group_by(ID_play) %>%
+                summarise(Total=sum(Clay,Grass,Hard, na.rm=TRUE),Clay,Grass,Hard) %>%
+                arrange(desc(Total))
+        z_tours <- plyr::join(z_tours,select(players,ID_play, Surname, Country))
+        print(select(z_tours, Surname, Country,Total, Clay,Grass, Hard))
+}
