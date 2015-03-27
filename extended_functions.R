@@ -146,7 +146,7 @@ count_tournaments <- function(){
                 arrange(desc(Total))
         z_tours <- plyr::join(z_tours,select(players,ID_play, Surname, Country))
         print(select(z_tours, Surname, Country,Total, Clay,Grass, Hard))
-
+}
 
 recommend_tournament <-function(category=5, surface="Hard"){
         z_rank <- db_ranking %>% filter(Date==max(Date)) %>%
@@ -206,5 +206,5 @@ aux_surface <- function(tour_surface,best_surface,worst_surface){
 aux_prestige <-function(category=5){
         result<-1/log(category+1,base=3)/category^(0.3)+0.4/category
         result<-(min(result,1.4))
-        result      
+        result
 }
