@@ -135,3 +135,67 @@ match_preview <- function (player1, player2,turnier){
         knit2html("preview.Rmd",quiet = TRUE)
         browseURL("preview.html")
 }
+
+# f1121 gdzies tu sie zaczyna
+
+recommend_tournament <-function(category=5, surface="Hard"){
+        z_rank <- db_ranking %>% filter(Date==max(Date)) %>%
+                select(Id_pl,Pos,Pts) %>% rename(ID_play = Id_pl)
+        z_players <- players %>% select(-c(Name,DOB,Skills))
+        z_stats <- plyr::join(z_players,z_rank, type="left")
+        
+        
+        z_stats <- z_stats %>% mutate(recover=aux_how_long_ago(Last_match), 
+                                      est.fit=(1+recover/200)*Fitness) %>%
+                group_by(ID_play) %>%
+                mutate(est.fit=round(min(est.fit,1),2), 
+                       pressure = aux_situation(pts = Pts), 
+                       sur_factor = aux_surface(tour_surface = surface, 
+                                                Surface_B, Surface_W), 
+                       recommendation = est.fit * pressure * sur_factor * 
+                               aux_prestige(category), 
+                       recommendation = round(recommendation,2)) %>%
+                select(recommendation, Surname,ID_play,Country, Pos, Pts, Last_match, 
+                       recover, Fitness, est.fit, pressure, sur_factor) %>% 
+                ungroup() %>% rename(reco=recommendation, Con=Country) %>%
+                arrange(desc(reco))
+                
+        print(z_stats, n=100)   # if > 100 players in database - remember to change it
+}
+aux_how_long_ago <-function(date){
+        result <- as.numeric(as.Date(max(db_ranking$Date))- (as.Date(date)))
+        round(result,2)
+}
+aux_situation <- function(pts){
+        if(is.na(pts)) pts<-0
+        pts.key <-sapply(c(1,2,15,16,30,31), function(x) subset(z_rank$Pts,z_rank$Pos==x))
+        key.difference <- abs(pts-pts.key)
+        key.difference <- key.difference[!is.na(key.difference & key.difference >0)]
+        result<-min(key.difference)
+        if(length(result)==0) {
+                result<-1
+        } else {
+                result <-result
+        }
+        result <-(min(1,1/log(result+1,base = 100)))
+        round(result,2)
+}
+aux_surface <- function(tour_surface,best_surface,worst_surface){
+        kBEST <-1
+        kWORST<-0.8
+        kNEUTRAL<-0.9
+        if(tour_surface==best_surface) {
+                result<-kBEST
+        } else if (tour_surface==worst_surface) {
+                result <-kWORST
+        } else {
+                result<-kNEUTRAL
+        }
+        result
+}
+aux_prestige <-function(category=5){
+        result<-1/log(category+1,base=3)/category^(0.3)+0.4/category
+        result<-(min(result,1.4))
+        result
+        
+}
