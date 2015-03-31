@@ -32,7 +32,7 @@ print.current.rank <-function(){
        
         working <- mutate(working, CHANGE=as.numeric(Last.Pos)-as.numeric(Pos))
         print(working)
-        l1<-"```{r}"
+        l1<-"```{r echo=FALSE}"
         l2<-"current.ranking<-db_ranking %>% filter(Date==max(Date))"
         l3<-"```"
         l2_1 <-"last.ranking<- db_ranking %>% filter(Date<max(Date)) %>%
@@ -48,10 +48,10 @@ print.current.rank <-function(){
         select(working,-Date,-Id_pl)%>% print"
         l2_2 <-"## Movers of the week  "
         l2_3 <- "working %>% select(Pos, Surname, CHANGE) %>%
-        arrange(desc(CHANGE)) %>% print"
-        l1_2 <-"## Ranking as of ```r max(db_ranking$Date)```"
-        writeLines(c(l1,l1_2,l2,l2_1,l2_2,l2_3,l3),"rank_print.Rmd")
-        knit2html("rank_print.Rmd", envir =  globalenv())
+        arrange(desc(CHANGE)) %>% filter(CHANGE !=0) %>% print"
+        l1_2 <-"# Ranking as of ```r max(db_ranking$Date)```...................... ![logo](graphics/ATP.gif)"
+        writeLines(c(l1_2,l1,l2,l2_1,l3,l2_2,l1,l2_3,l3),"rank_print.Rmd")
+        knit2html("rank_print.Rmd")
         browseURL("rank_print.html")
 }
 inactive <-function(player1, player2, turnier){
