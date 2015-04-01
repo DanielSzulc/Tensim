@@ -3,8 +3,7 @@
 - number of consecurtive weeks as number 1 (top 10)
 - winning/losing streaks (also by surface)
 - the youngest/ the oldest leader, top 10 ranking
-- road to ATP Tour Finals
-- ATP Tour Finals handling  - robin round, 
+
 - new view of pre-match data
 - fully automated tournaments draws
 - corrections of skill factor (up for Sampras, Agassi and other world no 1)

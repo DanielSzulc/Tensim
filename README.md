@@ -9,3 +9,5 @@
 
 ### 1.1.3 (31 Mar 2015)
 1.  Small presentation fixes in ranking printing
+2.  Road to ATP Tour Finals
+3.  ATP Tour Finals handling (robin_round)
