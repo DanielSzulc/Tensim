@@ -134,7 +134,12 @@ match_preview <- function (player1, player2,turnier){
         matches2<-rename(matches2, Loser = Surname)
         select(matches2,Tournament,Date, Rnd, Winner, Loser, Score) %>% 
                 arrange(Date) %>% print"
-        writeLines(c(options, name1,open,play1,close,name2,open,play2,close),"preview.Rmd")
+        play1_2 <-"PrintThisSeason(player1)
+        PrintPastResults(player1, turnier)"
+        play2_2 <-"PrintThisSeason(player2)
+        PrintPastResults(player2, turnier)"
+        writeLines(c(options, name1,open,play1,close,name2,open,play2,close,open, 
+                     play1_2,play2_2,close),"preview.Rmd")
         knit2html("preview.Rmd",quiet = TRUE)
         browseURL("preview.html")
 }
@@ -238,4 +243,19 @@ matches_by_surface <- function(){
                 filter(!is.na(Surname))
         print (select(z_matches,Surname,Country,Total_W, Total_L,Clay_W, 
                       Clay_L, Grass_W, Grass_L, Hard_W, Hard_L))
+}
+
+PrintThisSeason <-function(player) {
+        tmp<-select_results(players = player) %>% arrange(Date)
+        print(tmp)
+}
+PrintPastResults <- function(player, tournament) {
+        year<-year(ymd(curr_date))
+        y <-integer(0)
+        for (i in 1995:year){
+               y<-c(y,i) 
+        }
+        
+        tmp<-select_results(players = player, tournament = tournament, years = y)
+        print(tmp)
 }
