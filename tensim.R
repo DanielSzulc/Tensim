@@ -2,10 +2,11 @@ setwd("C:/Users/Krokodylek/Documents/Rprogramming/tennis_sim")
 #curr_date<-as.Date("1996-01-18")
 source("extended_functions.R")
 source("world_finals.R")
+source("new_season.R")
 players<-read.csv("players.txt",stringsAsFactors=FALSE)
 db_matches<-read.csv("matches.txt",stringsAsFactors=FALSE)
 db_ranking<-read.csv("ranking.txt",stringsAsFactors=FALSE)
-db_tournaments<-read.csv("tournaments.txt")
+db_tournaments<-read.csv("tournaments.txt",stringsAsFactors=FALSE)
 tournament<-"N"
 curr_date<-as.Date("1996-01-01")
 rnd<-48
