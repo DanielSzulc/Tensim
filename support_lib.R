@@ -97,7 +97,7 @@ parse_set <- function(set_result){
 }
 
 DropPoints <- function(date) {
-        x_t <- select_results()
+        x_t <- select_results(years = year(max(db_ranking$Date))-1)
         next.week <- filter(x_t, Drop_date<=ymd(date)+days(7) & Drop_date>ymd(date)) %>%
                 group_by(ID_play, Tournament) %>% summarise(points= sum(Pts))
         two.weeks <- filter(x_t, Drop_date<=ymd(date)+days(14) & Drop_date>ymd(date)+days(7)) %>%
