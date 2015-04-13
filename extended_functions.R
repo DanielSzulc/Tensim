@@ -50,7 +50,9 @@ print.current.rank <-function(){
         l2_3 <- "working %>% select(Pos, Surname, CHANGE) %>%
         arrange(desc(CHANGE)) %>% filter(CHANGE !=0) %>% print"
         l1_2 <-"# Ranking as of ```r max(db_ranking$Date)```...................... ![logo](graphics/ATP.gif)"
-        writeLines(c(l1_2,l1,l2,l2_1,l3,l2_2,l1,l2_3,l3),"rank_print.Rmd")
+        l4a<-"## DEFENDING RANKING POINTS in next two weeks:"
+        l4b<-"DropPoints(max(db_ranking$Date))"        
+        writeLines(c(l1_2,l1,l2,l2_1,l3,l2_2,l1,l2_3,l3,l4a,l1,l4b,l3),"rank_print.Rmd")
         knit2html("rank_print.Rmd")
         browseURL("rank_print.html")
 }

@@ -95,4 +95,18 @@ parse_set <- function(set_result){
         result
         
 }
+
+DropPoints <- function(date) {
+        x_t <- select_results()
+        next.week <- filter(x_t, Drop_date<=ymd(date)+days(7) & Drop_date>ymd(date)) %>%
+                group_by(ID_play, Tournament) %>% summarise(points= sum(Pts))
+        two.weeks <- filter(x_t, Drop_date<=ymd(date)+days(14) & Drop_date>ymd(date)+days(7)) %>%
+        group_by(ID_play, Tournament) %>% summarise(points= sum(Pts))
         
+        next.week <- plyr::join(next.week, players,by = "ID_play") %>% 
+                select(Surname, Tournament, points) %>% arrange(desc(points))
+        two.weeks <- plyr::join(two.weeks, players,by = "ID_play") %>%
+                select(Surname, Tournament, points) %>% arrange(desc(points))
+        print(next.week)
+        print(two.weeks)
+}
