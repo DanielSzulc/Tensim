@@ -11,3 +11,8 @@
 1.  Small presentation fixes in ranking printing
 2.  Road to ATP Tour Finals
 3.  ATP Tour Finals handling (robin_round)
+
+### 1.1.4 (13 Apr 2015)
+1.  Creating new season calendar (by adding one year and recalculating weeks)
+2.  Presenting drop points in the next weekhyjuuuu
+3.  Match preview improvement - current season result + past result in current tournament
