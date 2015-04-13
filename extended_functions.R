@@ -246,7 +246,8 @@ matches_by_surface <- function(){
 }
 
 PrintThisSeason <-function(player) {
-        tmp<-select_results(players = player) %>% arrange(Date)
+        tmp<-select_results(players = player) %>% arrange(Date) %>% 
+                select(Date, Tournament, Rnd, Result, Score, Opponent, ID_play)
         print(tmp)
 }
 PrintPastResults <- function(player, tournament) {
@@ -256,6 +257,8 @@ PrintPastResults <- function(player, tournament) {
                y<-c(y,i) 
         }
         
-        tmp<-select_results(players = player, tournament = tournament, years = y)
+        tmp<-select_results(players = player, tournament = tournament, years = y) %>%
+                select(Date, Tournament, Rnd, Result, Score, Opponent, ID_play) %>%
+                arrange(Date)
         print(tmp)
 }
