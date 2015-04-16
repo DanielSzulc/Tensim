@@ -11,8 +11,9 @@ qualify <-function(app_players,wildcards,total_draw=8,seeded=2) {
                                   "Id_pl"], wildcards)
         who.drawed <-unique(who.drawed)
         print(who.drawed)
-        print(c("Seeded: ", who.seeded," Draw: ",sample(who.drawed)), 
+        print(c("Seeded: ", who.seeded," Draw: ",tmp<-sample(who.drawed)), 
               quote = FALSE)
+        list(seeded=who.seeded, drawed=tmp)
 }
 
 number.win <-function(){
