@@ -2,6 +2,7 @@
 library(dplyr)
 library(tidyr)
 library(lubridate)
+library(ggplot2)
 
 
 select_results <-function(players = 1:100, 
@@ -109,4 +110,47 @@ DropPoints <- function(date) {
                 select(Surname, Tournament, points) %>% arrange(desc(points))
         print(next.week)
         print(two.weeks)
+}
+BreakRankingPoints <-function(player) {
+        selected.matches <-(select_results(players = player, 
+                                           years = c(year(max(db_ranking$Date)), 
+                                                     year(max(db_ranking$Date))-1)))
+        rank.breakdown <- selected.matches %>% 
+                filter(Drop_date > max(db_ranking$Date)) %>% 
+                group_by(Tournament) %>% 
+                summarize(Points = sum(Pts), Round = min(Rnd), 
+                          WL = min(Result),
+                          Drop = max(Drop_date)) %>% 
+                arrange(desc(Points))
+        print(rank.breakdown)
+        total.pts.info <- paste("Total points:", 
+                                sum(rank.breakdown$Points),sep=" ")
+        
+        print(total.pts.info)
+        rm("selected.matches")
+        rm("rank.breakdown")
+
+
+}
+CompareRanking <-function(player1,player2) {
+        pl1.surname<-players[which(players$ID_play==player1),"Surname"]
+        pl2.surname<-players[which(players$ID_play==player2),"Surname"]
+        pl1.rank <- filter(db_ranking, Id_pl==player1)                
+        pl2.rank <- filter(db_ranking, Id_pl==player2)
+        toplot.rank <-bind_rows(pl1.rank, pl2.rank)
+        head(toplot.rank)
+        #ggplot(toplot.rank, aes(Date,Pos),color=Surname) + geom_line()
+        #qplot(Date,Pos, data=toplot.rank,colour=Surname,)
+        pos.range <-range(toplot.rank$Pos)
+        with(subset(toplot.rank, Id_pl==player1),
+             plot(as.Date(Date), Pos, type="l", col="red", 
+                               ylim=rev(pos.range)))
+        
+        with(subset(toplot.rank, Id_pl==player2),
+             lines(as.Date(Date), Pos, type="l", col="blue"))
+        legend("bottomleft",legend = c(pl1.surname, pl2.surname), 
+               lty=1, col=c("red","blue"), cex=0.5)
+                
+        
+        
 }
