@@ -98,12 +98,13 @@ match_preview <- function (player1, player2,turnier){
         options<-"```{r set-options, echo=FALSE, cache=FALSE}
         options(width=130)
         ```"
-        open<-"```{r echo=FALSE}"
+        open<-"```{r echo=FALSE, fig.width=11}"
         close<-"```"
-        name1<-"***```r name1 <- filter(players,ID_play==player1) %>% select(Surname); print(name1[[1]])``` ***"
+        n1<- filter(players,ID_play==player1) %>% select(Surname)
         
-        name2<-"***```r name2 <- filter(players,ID_play==player2) %>% select(Surname);
-        print(name2[[1]])``` ***"
+        n2<-filter(players,ID_play==player2) %>% select(Surname)
+        name1<-paste("##",n1[[1]])
+        name2<-paste("##",n2[[1]])
         play1 <-"category <- filter(db_tournaments,Name_of_Tournament==turnier) %>%
                 select(Category)
         category <- category[[1]]
@@ -138,8 +139,16 @@ match_preview <- function (player1, player2,turnier){
         PrintPastResults(player1, turnier)"
         play2_2 <-"PrintThisSeason(player2)
         PrintPastResults(player2, turnier)"
-        writeLines(c(options, name1,open,play1,close,name2,open,play2,close,open, 
-                     play1_2,play2_2,close),"preview.Rmd")
+        plot.1.ranking <- "CompareRanking(player1, player2)"
+        play1.breakdown <-"BreakRankingPoints(player1)"
+        play2.breakdown <-"BreakRankingPoints(player2)"
+        play1.name <- "players[which(players$ID_play==player1),\"Surname\"]"
+        play2.name <- "players[which(players$ID_play==player2),\"Surname\"]"
+        #writeLines(c(options, name1,open,play1,close,name2,open,play2,close,open, 
+        #             play1_2,play2_2,close),"preview.Rmd")
+        writeLines(c(options,open,plot.1.ranking,close,name1,open,play1.breakdown, 
+                     play1_2,close,name2,open,play2.breakdown, 
+                     play2_2,close),"preview.Rmd")
         knit2html("preview.Rmd",quiet = TRUE)
         browseURL("preview.html")
 }
