@@ -288,3 +288,10 @@ PrintPastResults <- function(player, tournament) {
         
         
 }
+GetRecommendedPlayers <-function(tour=tournament) {
+        cat <- subset(db_tournaments$Category, 
+                      db_tournaments$Name_of_Tournament==tour)
+        should.play <- recommend_tournament(cat, surface)
+        should.play <-filter(should.play,reco>=0.5,recover>0)
+        unlist(should.play[,3], use.names = FALSE)
+}
