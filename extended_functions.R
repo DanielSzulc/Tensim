@@ -2,12 +2,14 @@ library(dplyr)
 library(knitr)
 qualify <-function(app_players,wildcards,total_draw=8,seeded=2) {
         selecting <- db_ranking %>% filter(Date==max(Date)) %>%
-                filter(Id_pl %in% app_players | Id_pl %in% wildcards) %>%
+                filter(Id_pl %in% setdiff(app_players,wildcards)) %>%
                 arrange(Pos)
         print(selecting)
         number.wildcards <- length(wildcards)
         who.seeded <- selecting[1:seeded,"Id_pl"]
-        who.drawed <- c(selecting[(seeded+1):(total_draw - number.wildcards), "Id_pl"], wildcards)
+        who.drawed <- c(selecting[(seeded+1):(total_draw - number.wildcards), 
+                                  "Id_pl"], wildcards)
+        who.drawed <-unique(who.drawed)
         print(who.drawed)
         print(c("Seeded: ", who.seeded," Draw: ",sample(who.drawed)), 
               quote = FALSE)
