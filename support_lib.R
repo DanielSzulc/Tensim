@@ -141,7 +141,7 @@ CompareRanking <-function(player1,player2) {
         head(toplot.rank)
         #ggplot(toplot.rank, aes(Date,Pos),color=Surname) + geom_line()
         #qplot(Date,Pos, data=toplot.rank,colour=Surname,)
-        pos.range <-range(toplot.rank$Pos)
+        pos.range <-range(toplot.rank$Pos,1)
         date.range<-as.Date(range(toplot.rank$Date))
         with(subset(toplot.rank, Id_pl==player1),
              plot(as.Date(Date), Pos, type="l", col="red", 
@@ -150,8 +150,10 @@ CompareRanking <-function(player1,player2) {
         with(subset(toplot.rank, Id_pl==player2),
              lines(as.Date(Date), Pos, type="l", col="blue"))
         legend("bottomleft",legend = c(pl1.surname, pl2.surname), 
-               lty=1, col=c("red","blue"), cex=0.8)
-                
-        
+               lty=1, col=c("red","blue"), cex=0.9)
+        abline(h=10, col="darkgreen", lty=3)
+        abline(h=15, col="darkmagenta", lty=3)        
+        abline(h=30, col="darkgrey", lty=3)
+        abline(h=1, col="gold", lty=3, lwd=2)
         
 }
