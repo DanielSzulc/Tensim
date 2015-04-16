@@ -3,6 +3,7 @@ setwd("C:/Users/Krokodylek/Documents/Rprogramming/tennis_sim")
 source("extended_functions.R")
 source("world_finals.R")
 source("new_season.R")
+source("ladder.R")
 players<-read.csv("players.txt",stringsAsFactors=FALSE)
 db_matches<-read.csv("matches.txt",stringsAsFactors=FALSE)
 db_ranking<-read.csv("ranking.txt",stringsAsFactors=FALSE)
@@ -12,6 +13,10 @@ curr_date<-as.Date("1996-01-01")
 rnd<-48
 surface<-"N"
 sets<-3
+g.a.p<-1:max(players$ID_play)   #Global vairable - applying players
+# g.a.p is a list of players ID who wants to apply to the current tournament
+g.wc <- max(players$ID_play)
+# g.wc is a list of wildcarded players ID to the current tournament
 #moze sie przydac
 #db_ranking[which(db_ranking[,"Date"]==max(db_ranking[,"Date"])&db_ranking[,"Pos"]<16),"Id_pl"]
 #
