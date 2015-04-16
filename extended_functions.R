@@ -248,6 +248,9 @@ matches_by_surface <- function(){
 PrintThisSeason <-function(player) {
         tmp<-select_results(players = player) %>% arrange(Date) %>% 
                 select(Date, Tournament, Rnd, Result, Score, Opponent, ID_play)
+        tmp<-plyr::join(tmp,select(players, ID_play, Surname)%>% 
+                               rename(Opponent=ID_play)) %>% 
+                select(Tournament, Rnd, Result, Surname, Score, Date)
         print(tmp)
 }
 PrintPastResults <- function(player, tournament) {
@@ -260,5 +263,19 @@ PrintPastResults <- function(player, tournament) {
         tmp<-select_results(players = player, tournament = tournament, years = y) %>%
                 select(Date, Tournament, Rnd, Result, Score, Opponent, ID_play) %>%
                 arrange(Date)
+        tmp<-plyr::join(tmp,select(players, ID_play, Surname)%>% 
+                                rename(Opponent=ID_play)) %>% 
+                select(Date, Rnd, Result, Surname, Score)
         print(tmp)
+        tmp.best.res <- mutate(tmp,Year=year(Date)) %>% group_by(Year) %>% 
+                summarise(Rnd=min(Rnd), Result=min(Result)) %>%
+                filter(Rnd==min(Rnd))
+        print(c("Appearances: ",length(unique(year(tmp$Date)))),quote=FALSE)
+        tmp.record <- mutate(tmp,Year=year(Date)) %>% group_by(Result) %>%
+                summarise(No=n()) %>% arrange(desc(Result))
+        print(as.data.frame(tmp.record))
+        print("Best result:", quote=FALSE)
+        print(as.data.frame(tmp.best.res))
+        
+        
 }
