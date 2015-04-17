@@ -18,11 +18,15 @@
 3.  Match preview improvement - current season result + past result in current tournament
 
 ### 1.1.5 (14 Apr 2015)
-1.  Torunament ladder (draw)
+1.  Torunament ladder (draw) (+ for tournaments up to 16 players)
 2.  Season leaders by surface
 3.  Graph of ranking position (+)
 4.  Ranking breakdown (+)
 5.  New recommendation of tournaments system (+/- partially)
 6.  Better match preview (+)
 7.  f_1143 improvement - surname of opponent (+)
-8.  amended errors in qualify function (wildcarded and drawed are doubled)
+8.  amended errors in qualify function (wildcarded and drawed are doubled) (+)
+
+### 1.1.6 (17 Apr 2015)
+1.  Tournament preview
+2.  Season statistics
