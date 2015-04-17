@@ -298,3 +298,40 @@ GetRecommendedPlayers <-function(tour=tournament) {
         should.play <-filter(should.play,reco>=0.5,recover>0)
         unlist(should.play[,3], use.names = FALSE)
 }
+MakeTournamentPreview <- function(tournament) {
+        year<-year(ymd(curr_date))
+        y <-integer(0)
+        for (i in 1995:year){
+                y<-c(y,i) 
+        }
+        
+        tmp<-select_results(tournament = tournament, years = y) %>%
+                select(Date, Tournament, Rnd, Result, Score, ID_play)
+        
+        tmp<-plyr::join(tmp,select(players, ID_play, Surname))%>%                                  
+                select(Date, Rnd, Result, Surname, Score, ID_play)
+        winners <- tmp %>% filter(Rnd==1, Result=="Win") %>% 
+                mutate(Year=year(Date)) %>%                
+                select(Year, Surname) %>% arrange(desc(Year))
+        print("Past winners", quote=FALSE)
+        print(winners)
+        records <- tmp %>% group_by(ID_play, Surname, Result) %>% 
+                summarise(Number=n()) %>% spread(Result, Number) %>% 
+                group_by(ID_play) %>% 
+                mutate(perc=round(Win/sum(Win,Los,na.rm = TRUE),3)) %>%
+                ungroup %>% select(Surname,Win,Los,perc) %>% arrange(desc(perc))
+        print(records)
+}
+
+ShowTournamentPreview <- function() {
+        options<-"```{r set-options, echo=FALSE, cache=FALSE}
+        options(width=130)
+        ```"
+        open<-"```{r echo=FALSE, fig.width=11}"
+        close<-"```"
+        make.preview<-"MakeTournamentPreview(tournament)"
+        title <-paste("## ",tournament," ", sep=" ")
+        writeLines(c(title,options,open,make.preview,close),"tour.Rmd")
+        knit2html("tour.Rmd",quiet = TRUE)
+        browseURL("tour.html")
+}

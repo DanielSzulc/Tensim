@@ -342,6 +342,7 @@ prepare_tournament<-function(name)
                 curr_date<<-as.Date(db_tournaments[which(db_tournaments[,"Name_of_Tournament"]==name),"Start_Date"])
                 rnd<<-as.numeric(db_tournaments[which(db_tournaments[,"Name_of_Tournament"]==name),"First_Rnd"])
                 tournament<<-as.character(db_tournaments[which(db_tournaments[,"Name_of_Tournament"]==name),"Name_of_Tournament"])
+                ShowTournamentPreview()
         } else 
         {
                 result<-"Blad"
