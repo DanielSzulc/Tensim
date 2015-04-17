@@ -55,7 +55,7 @@ MakeSeasonStats <- function(){
         
         print(" ")
         print(paste("Match records by surface",year, sep=" "))
-              print(match.records)
+              
         print(by.surface)
                                                     
 }
