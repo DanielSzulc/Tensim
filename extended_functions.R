@@ -202,7 +202,7 @@ aux_how_long_ago <-function(date){
 aux_situation <- function(pts){
         if(is.na(pts)) pts<-0
         pts.key <-sapply(c(1,2,8,9,15,16,30,31), function(x) 
-                if((length(subset(z_rank$Pts,z_rank$Pos==x))>0)) {subset(z_rank$Pts,z_rank$Pos==x)}
+                if((length(subset(z_rank$Pts,z_rank$Pos==x))>0)) {subset(z_rank$Pts,z_rank$Pos==x)[1]}
                    else {0})
         key.difference <- abs(pts-pts.key)
         key.difference <- key.difference[!is.na(key.difference & key.difference >0)]
