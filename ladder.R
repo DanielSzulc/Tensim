@@ -44,8 +44,11 @@ ContinueTournament <-function() {
                                                 surface,curr_date)
                         winner <- tail(db_matches,1)[1,"Win"]
                         ladder[i,"Pass"]=winner
-                        ladder[which(ladder$TMMN==ladder[i,"Nxt"]),
-                               PassPlayer(ladder[i,"Nxt"],ladder)]=ladder[i,"Pass"]
+                        if (ladder[i,"Nxt"]!=0){
+                                
+                                ladder[which(ladder$TMMN==ladder[i,"Nxt"]),
+                                       PassPlayer(ladder[i,"Nxt"],ladder)]=ladder[i,"Pass"]
+                        }
                 }
                 
                 
