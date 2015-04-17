@@ -58,6 +58,8 @@ print.current.rank <-function(){
         writeLines(c(l1_2,l1,l2,l2_1,l3,l2_2,l1,l2_3,l3,l4a,l1,l4b,l3),"rank_print.Rmd")
         knit2html("rank_print.Rmd")
         browseURL("rank_print.html")
+        show_road_to_finals()
+        ShowSeasonStats()
 }
 inactive <-function(player1, player2, turnier){
         category <- filter(db_tournaments,Name_of_Tournament==turnier) %>%
