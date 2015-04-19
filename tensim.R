@@ -26,7 +26,7 @@ g.wc <- max(players$ID_play)
 #players<-read.csv("players.txt",stringsAsFactors=FALSE)
 #db_matches<-read.csv("matches.txt",stringsAsFactors=FALSE)
 #db_tournaments<-read.csv("tournaments.txt")
-#db_ranking<-mk_ranking(players,curr_date)
+#db_ranking<-mk_ranking(players,curr_date+days(1))
 
 # db_matches<-m_simulator(1,2,sets,tournament,rnd,surface,curr_date)
 
