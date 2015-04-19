@@ -189,11 +189,19 @@ recommend_tournament <-function(category=5, surface="Hard"){
                                aux_prestige(category), 
                        recommendation = round(recommendation,2)) %>%
                 select(recommendation, Surname,ID_play,Country, Pos, Pts, Last_match, 
-                       recover, Fitness, est.fit, pressure, sur_factor) %>% 
-                ungroup() %>% rename(reco=recommendation, Con=Country) %>%
+                       recover, Fitness, est.fit, pressure, sur_factor)
+        dropped <- DropPoints(as.Date(max(db_ranking$Date))) %>%
+                group_by(ID_play) %>% summarise(points=sum(points, na.rm=TRUE)) %>%
+                mutate(drop.f=round(1+(points/1300),3)) %>% select(ID_play, drop.f)
+        
+        z_stats <- plyr::join(z_stats, dropped, by="ID_play")
+        
+        z_stats <- z_stats %>% rename(reco=recommendation, Con=Country) %>% 
+                mutate(drop.f=ifelse(is.na(drop.f),yes = 1,no = drop.f)) %>%
+                mutate(reco=round(reco*drop.f,2))%>%
                 arrange(desc(reco))
-                
-        print(z_stats, n=100)   # if > 100 players in database - remember to change it
+         z_stats       
+        #print(z_stats, n=100)   # if > 100 players in database - remember to change it
 }
 aux_how_long_ago <-function(date){
         result <- as.numeric(as.Date(max(db_ranking$Date))- (as.Date(date)))
