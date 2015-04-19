@@ -39,6 +39,7 @@ ContinueTournament <-function() {
                                PassPlayer(ladder[i,"Nxt"],ladder)]=ladder[i,"Pass"]
                         
                 } else {
+                        VisualiseLadder(tournament,year(curr_date))
                         db_matches<<-m_simulator(ladder[i,"p1"],ladder[i,"p2"], 
                                                 sets,tournament,rnd, 
                                                 surface,curr_date)
