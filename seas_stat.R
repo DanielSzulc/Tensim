@@ -66,8 +66,11 @@ ShowSeasonStats <-function(){
         open<-"```{r echo=FALSE, fig.width=11}"
         close<-"```"
         make.preview<-"MakeSeasonStats()"
+        number.one<-"ShowNumberOne(TRUE); ShowNumberOne(FALSE)"
+        comment<-"## Ranking leaders and top 10"
         title <-paste("## ","Season stats as at",ymd(max(db_ranking$Date)), sep=" ")
-        writeLines(c(title,options,open,make.preview,close),"ss.Rmd")
+        writeLines(c(title,options,open,make.preview,close,comment,open,
+                     number.one,close),"ss.Rmd")
         knit2html("ss.Rmd",quiet = TRUE)
         browseURL("ss.html")
         

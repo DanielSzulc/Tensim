@@ -349,3 +349,30 @@ ShowTournamentPreview <- function() {
         knit2html("tour.Rmd",quiet = TRUE)
         browseURL("tour.html")
 }
+ShowNumberOne <-function(this.year=FALSE) {
+        tmp <- filter(db_ranking, Pos==1)
+        tmp <- tmp %>%mutate(end.day=lead(Date,1)) %>% 
+                mutate(days=as.numeric(ymd(end.day)-ymd(Date)))
+        if(this.year==TRUE) {
+                tmp<-filter(tmp,year(Date)==year(max(db_ranking$Date)))
+        }
+        total.weeks<-tmp %>% group_by(Id_pl,Surname) %>% 
+                summarise(n.days=sum(days,na.rm=TRUE), 
+                          weeks= floor(n.days/7)) %>% ungroup %>%
+                arrange(desc(weeks)) %>%select(Surname,weeks)
+        
+        top.10<-filter(db_ranking, Pos<=10, Pos>0)
+        rank.dates <-select(db_ranking, Date) %>% unique %>%
+                mutate(end.day=lead(Date,1))        
+        top.10<-plyr::join(top.10, rank.dates) %>% 
+                mutate(days=as.numeric(ymd(end.day)-ymd(Date)))
+        if(this.year==TRUE) {
+                top.10<-filter(top.10,year(Date)==year(max(db_ranking$Date)))
+        }
+        top.10<-top.10 %>% group_by(Id_pl,Surname) %>% 
+                summarise(n.days=sum(days,na.rm=TRUE), 
+                          weeks= floor(n.days/7)) %>% ungroup %>%
+                arrange(desc(weeks)) %>%select(Surname,weeks) %>% print(n=30)
+        
+        print(total.weeks)
+}
