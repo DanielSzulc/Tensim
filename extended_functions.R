@@ -376,3 +376,15 @@ ShowNumberOne <-function(this.year=FALSE) {
         
         print(total.weeks)
 }
+GraphLeaderCharts <- function() {
+        z<-filter(db_ranking, Pos==1)
+        plot(ymd(z$Date), z$Pts, col=z$Id_pl, type="b", pch=19,xlab="",
+             ylab="", main="All time")
+        legend("bottomright",pch=19,col=unique(z$Id_pl), legend=unique(z$Surname), 
+               cex=0.8,bty="n" )
+        z<-filter(db_ranking, Pos==1, year(Date)==year(max(db_ranking$Date)))
+        plot(ymd(z$Date), z$Pts, col=z$Id_pl, type="b", pch=19, xlab="",
+             ylab="", main=year(max(db_ranking$Date)))
+        legend("bottomright",pch=19,col=unique(z$Id_pl), legend=unique(z$Surname), cex=0.8,bty="n" )
+
+}

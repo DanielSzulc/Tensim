@@ -66,7 +66,7 @@ ShowSeasonStats <-function(){
         open<-"```{r echo=FALSE, fig.width=11}"
         close<-"```"
         make.preview<-"MakeSeasonStats()"
-        number.one<-"ShowNumberOne(TRUE); ShowNumberOne(FALSE)"
+        number.one<-"ShowNumberOne(TRUE); ShowNumberOne(FALSE); GraphLeaderCharts()"
         comment<-"## Ranking leaders and top 10"
         title <-paste("## ","Season stats as at",ymd(max(db_ranking$Date)), sep=" ")
         writeLines(c(title,options,open,make.preview,close,comment,open,
