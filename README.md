@@ -28,5 +28,11 @@
 8.  amended errors in qualify function (wildcarded and drawed are doubled) (+)
 
 ### 1.1.6 (17 Apr 2015)
-1.  Tournament preview
-2.  Season statistics
+1.  Tournament preview (+)
+2.  Season statistics (+)
+
+### 1.1.7 (19 Apr 2015)
+1.  Improve recommendation function - take into account droping points in the next week (+)
+2.  Presentation of tournament ladder (+)
+3.  Weeks as number 1 (consecutive/total)
+4.  Weeks in top 10 (consecutive/total)
