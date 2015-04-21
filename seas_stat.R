@@ -57,6 +57,10 @@ MakeSeasonStats <- function(){
         print(paste("Match records by surface",year, sep=" "))
               
         print(by.surface)
+        print("Players not classified: ", quote=FALSE)
+        x<-filter(db_ranking,Date==max(Date))
+        x<-setdiff(players$ID_play,x$Id_pl)
+        print(x)
                                                     
 }
 ShowSeasonStats <-function(){
