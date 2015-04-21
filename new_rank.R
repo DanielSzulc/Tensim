@@ -19,10 +19,12 @@ NewMakeRanking <-function(date) {
         new.tab <- new.tab %>% group_by(ID_play) %>% 
                 mutate(new.pts = sum(kFactor*Curr.Pts, (1-kFactor)*Pts, na.rm = TRUE)) %>%
                 mutate(Pts=round(new.pts,0)) %>% filter(Pts>0) %>%
-                ungroup %>% mutate(Pos = min_rank(desc(new.pts)), Date = date)
-        new.tab <-rename(new.tab, Id_pl=ID_play) %>% 
+                ungroup %>% mutate(Pos = min_rank(desc(new.pts)), Date = date) %>%
+                select(-(Name:Country))
+        together<-plyr::join(new.tab, players, by="ID_play")
+        new.tab<- together %>% rename(Id_pl=ID_play) %>%
                 select(Pos, Id_pl, Name, Surname, Country, Pts, Date) %>% 
-                arrange(Pos) %>% print(n=75)
+                arrange(Pos)
         
         db_r<-bind_rows(db_ranking,new.tab)
         
