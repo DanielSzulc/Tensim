@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Muster</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1"/> </p>
+
+<h2>Muster</h2>
+
+<pre><code>## Source: local data frame [13 x 5]
+## 
+##           Tournament Points Round  WL       Drop
+## 1      Roland Garros   1007     1 Win 1998-06-01
+## 2   ATP World Finals    482     2 Los 1998-11-27
+## 3    Australian Open    247     2 Los 1998-01-24
+## 4          Stuttgart    154     1 Los 1998-07-20
+## 5  Stuttgart Masters    113     2 Los 1998-10-25
+## 6       Key Biscayne     56     4 Los 1998-03-21
+## 7            US Open     42     8 Los 1998-08-28
+## 8         Scottsdale     26     2 Los 1998-03-08
+## 9          Cape Town      6     4 Los 1998-01-03
+## 10     Paris Masters      4     8 Los 1998-10-30
+## 11       Monte Carlo      0     8 Los 1998-04-24
+## 12          Montreal      0     8 Los 1998-07-31
+## 13         Wimbledon      0    16 Los 1998-07-02
+## [1] &quot;Total points: 2137&quot;
+</code></pre>
+
+<pre><code>## Joining by: Opponent
+</code></pre>
+
+<pre><code>##           Tournament Rnd Result       Surname               Score       Date
+## 1          Cape Town   4    Los        Becker         6-3 6-7 3-6 1997-01-03
+## 2    Australian Open  16    Win      Krajicek 6-3 2-6 6-2 2-6 6-3 1997-01-22
+## 3    Australian Open   8    Win       Courier 6-2 6-1 1-6 6-4 0-0 1997-01-23
+## 4    Australian Open   4    Win      Ferreira 6-2 3-6 6-7 6-1 6-2 1997-01-24
+## 5    Australian Open   2    Los      Bruguera 6-2 1-6 1-6 4-6 0-0 1997-01-25
+## 6         Scottsdale   4    Win      Reneberg         6-3 7-5 0-0 1997-03-07
+## 7         Scottsdale   2    Los       Kuerten         5-7 6-7 0-0 1997-03-08
+## 8       Key Biscayne  16    Win        Henman         6-3 6-4 0-0 1997-03-19
+## 9       Key Biscayne   8    Win          Rios         6-3 6-4 0-0 1997-03-20
+## 10      Key Biscayne   4    Los      Rusedski         6-4 2-6 3-6 1997-03-21
+## 11       Monte Carlo   8    Los       Sampras         2-6 3-6 0-0 1997-04-24
+## 12     Roland Garros  16    Win        Edberg 6-3 2-6 6-2 6-4 0-0 1997-05-28
+## 13     Roland Garros   8    Win        Henman 6-3 6-1 6-3 0-0 0-0 1997-05-29
+## 14     Roland Garros   4    Win          Moya 4-6 6-1 6-1 4-6 6-4 1997-05-30
+## 15     Roland Garros   2    Win         Stich 6-3 7-5 7-5 0-0 0-0 1997-05-31
+## 16     Roland Garros   1    Win       Kuerten 7-6 6-1 6-7 4-6 6-2 1997-06-01
+## 17         Wimbledon  16    Los         Safin 6-7 1-6 1-6 0-0 0-0 1997-07-02
+## 18         Stuttgart   4    Win       Periera         7-5 6-3 0-0 1997-07-18
+## 19         Stuttgart   2    Win         Black         1-6 7-5 6-2 1997-07-19
+## 20         Stuttgart   1    Los      Grosjean         3-6 7-5 4-6 1997-07-20
+## 21          Montreal   8    Los       Connell         2-6 3-6 0-0 1997-07-31
+## 22           US Open  16    Win          Moya 6-0 7-5 6-2 0-0 0-0 1997-08-27
+## 23           US Open   8    Los       Courier 6-3 6-0 6-7 2-6 4-6 1997-08-28
+## 24 Stuttgart Masters   8    Win         Gross         6-0 6-4 0-0 1997-10-23
+## 25 Stuttgart Masters   4    Win        Agassi         1-6 6-3 6-4 1997-10-24
+## 26 Stuttgart Masters   2    Los         Chang         6-4 6-7 3-6 1997-10-25
+## 27     Paris Masters   8    Los Philippoussis         6-1 2-6 4-6 1997-10-30
+## 28  ATP World Finals   4    Los       Kuerten         6-1 3-6 3-6 1997-11-21
+## 29  ATP World Finals   4    Win Philippoussis         6-1 3-6 6-3 1997-11-23
+## 30  ATP World Finals   4    Win       Pioline         6-0 6-7 6-2 1997-11-25
+## 31  ATP World Finals   2    Win          Rios         6-1 4-6 6-4 1997-11-27
+</code></pre>
+
+<pre><code>## Joining by: Opponent
+</code></pre>
+
+<pre><code>##         Date Rnd Result       Surname       Score
+## 1 1997-11-21   4    Los       Kuerten 6-1 3-6 3-6
+## 2 1997-11-23   4    Win Philippoussis 6-1 3-6 6-3
+## 3 1997-11-25   4    Win       Pioline 6-0 6-7 6-2
+## 4 1997-11-27   2    Win          Rios 6-1 4-6 6-4
+## [1] Appearances:  1            
+##   Result No
+## 1    Win  3
+## 2    Los  1
+## [1] Best result:
+##   Year Rnd Result
+## 1 1997   2    Los
+</code></pre>
+
+<h2>Moya</h2>
+
+<pre><code>## Source: local data frame [17 x 5]
+## 
+##           Tournament Points Round  WL       Drop
+## 1   ATP World Finals   1535     1 Los 1998-11-27
+## 2            Hamburg    259     1 Los 1998-05-11
+## 3      Paris Masters    227     1 Los 1998-11-02
+## 4      Roland Garros    117     4 Los 1998-05-30
+## 5        Monte Carlo     97     2 Los 1998-04-26
+## 6          Barcelona     55     2 Los 1998-04-19
+## 7            Memphis     55     2 Los 1998-02-15
+## 8       Key Biscayne     32     4 Los 1998-03-21
+## 9             Zagreb     30     2 Los 1998-02-01
+## 10         Stuttgart      6     4 Los 1998-07-18
+## 11         Wimbledon      5    16 Los 1998-07-02
+## 12      Indian Wells      4     8 Los 1998-03-13
+## 13              Rome      4     8 Los 1998-05-15
+## 14   Australian Open      2    16 Los 1998-01-22
+## 15             Dubai      0     4 Los 1998-02-07
+## 16 Stuttgart Masters      0     8 Los 1998-10-23
+## 17           US Open      0    16 Los 1998-08-27
+## [1] &quot;Total points: 2428&quot;
+</code></pre>
+
+<pre><code>## Joining by: Opponent
+</code></pre>
+
+<pre><code>##           Tournament Rnd Result       Surname               Score       Date
+## 1    Australian Open  16    Los       Courier 6-7 5-7 6-4 1-6 0-0 1997-01-22
+## 2             Zagreb   4    Win    Ivanisevic         7-5 6-3 0-0 1997-01-31
+## 3             Zagreb   2    Los       Enqvist         2-6 6-4 6-7 1997-02-01
+## 4              Dubai   4    Los       Connell         6-7 4-6 0-0 1997-02-07
+## 5            Memphis   4    Win     Woodforde         2-6 6-3 6-2 1997-02-14
+## 6            Memphis   2    Los      Gaudenzi         6-4 2-6 0-6 1997-02-15
+## 7       Indian Wells   8    Los         Chang         6-4 2-6 4-6 1997-03-13
+## 8       Key Biscayne   8    Win      Bruguera         6-1 7-5 0-0 1997-03-20
+## 9       Key Biscayne   4    Los       Sampras         1-6 6-7 0-0 1997-03-21
+## 10         Barcelona   4    Win         Frana         6-2 7-6 0-0 1997-04-18
+## 11         Barcelona   2    Los       Enqvist         2-6 7-6 2-6 1997-04-19
+## 12       Monte Carlo   8    Win         Chang         1-6 6-1 6-4 1997-04-24
+## 13       Monte Carlo   4    Win      Bruguera         7-6 6-3 0-0 1997-04-25
+## 14       Monte Carlo   2    Los       Sampras         4-6 2-6 0-0 1997-04-26
+## 15           Hamburg   8    Win         Safin         2-6 6-4 6-4 1997-05-08
+## 16           Hamburg   4    Win         Chang         5-7 6-3 6-4 1997-05-09
+## 17           Hamburg   2    Win       Enqvist         6-1 6-4 0-0 1997-05-10
+## 18           Hamburg   1    Los          Rios 4-6 6-2 3-6 3-6 0-0 1997-05-11
+## 19              Rome   8    Los      Gaudenzi         6-4 2-6 0-6 1997-05-15
+## 20     Roland Garros  16    Win         Arazi 3-6 6-2 6-3 7-6 0-0 1997-05-28
+## 21     Roland Garros   8    Win    Kafelnikow 3-6 6-4 6-0 6-4 0-0 1997-05-29
+## 22     Roland Garros   4    Los        Muster 6-4 1-6 1-6 6-4 4-6 1997-05-30
+## 23         Wimbledon  16    Los      Krajicek 7-6 7-6 4-6 3-6 6-7 1997-07-02
+## 24         Stuttgart   4    Los      Grosjean         5-7 6-4 5-7 1997-07-18
+## 25           US Open  16    Los        Muster 0-6 5-7 2-6 0-0 0-0 1997-08-27
+## 26 Stuttgart Masters   8    Los Philippoussis         1-6 6-7 0-0 1997-10-23
+## 27     Paris Masters   8    Win      Bruguera         6-4 6-3 0-0 1997-10-30
+## 28     Paris Masters   4    Win       Boetsch         6-2 4-6 6-2 1997-10-31
+## 29     Paris Masters   2    Win       Courier         6-3 7-6 0-0 1997-11-01
+## 30     Paris Masters   1    Los       Sampras         3-6 6-7 0-0 1997-11-02
+## 31  ATP World Finals   4    Win       Sampras         6-2 6-3 0-0 1997-11-22
+## 32  ATP World Finals   4    Los          Rios         2-6 4-6 0-0 1997-11-24
+## 33  ATP World Finals   4    Win       Courier         6-3 6-1 0-0 1997-11-26
+## 34  ATP World Finals   2    Win Philippoussis         6-4 7-6 0-0 1997-11-27
+</code></pre>
+
+<pre><code>## Joining by: Opponent
+</code></pre>
+
+<pre><code>##         Date Rnd Result       Surname               Score
+## 1 1996-11-22   4    Win        Edberg         6-2 4-6 6-4
+## 2 1996-11-24   4    Win    Kafelnikow         4-6 6-2 6-2
+## 3 1996-11-26   4    Win          Rios         0-6 6-3 6-3
+## 4 1996-11-27   2    Win        Becker         7-6 7-6 0-0
+## 5 1996-11-28   1    Win          Rios 6-4 6-1 6-3 0-0 0-0
+## 6 1997-11-22   4    Win       Sampras         6-2 6-3 0-0
+## 7 1997-11-24   4    Los          Rios         2-6 4-6 0-0
+## 8 1997-11-26   4    Win       Courier         6-3 6-1 0-0
+## 9 1997-11-27   2    Win Philippoussis         6-4 7-6 0-0
+## [1] Appearances:  2            
+##   Result No
+## 1    Win  8
+## 2    Los  1
+## [1] Best result:
+##   Year Rnd Result
+## 1 1996   1    Win
+</code></pre>
+
+</body>
+
+</html>

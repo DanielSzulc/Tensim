@@ -1,0 +1,8 @@
+red.group <-
+c(8L, 29L, 5L, 67L)
+blue.group <-
+c(1L, 36L, 11L, 34L)
+match.order <-
+structure(c(8L, 29L, 5L, 67L, 1L, 36L, 11L, 34L, 8L, 5L, 29L, 
+67L, 1L, 11L, 36L, 34L, 8L, 67L, 29L, 5L, 1L, 34L, 36L, 11L), .Dim = c(2L, 
+12L))

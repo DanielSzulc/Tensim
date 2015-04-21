@@ -1,0 +1,15 @@
+blue.g <-
+structure(list(Surname = c("Rios", "Moya", "Sampras", "Courier"
+), ID_play = c(34, 36, 1, 11), Wins = c(3, 2, 1, 0), Loss = c(0, 
+1, 2, 3), Sets.F = c(6, 4, 3, 2), Sets.A = c(2, 2, 5, 6), Games.F = c(43, 
+30, 31, 29), Games.A = c(28, 21, 39, 45)), class = "data.frame", row.names = c(NA, 
+-4L), .Names = c("Surname", "ID_play", "Wins", "Loss", "Sets.F", 
+"Sets.A", "Games.F", "Games.A"))
+red.g <-
+structure(list(Surname = c("Philippoussis", "Muster", "Pioline", 
+"Kuerten"), ID_play = c(8, 5, 29, 67), Wins = c(2, 2, 1, 1), 
+    Loss = c(1, 1, 2, 2), Sets.F = c(5, 5, 4, 3), Sets.A = c(3, 
+    4, 5, 5), Games.F = c(38, 45, 38, 36), Games.A = c(37, 32, 
+    48, 40)), class = "data.frame", row.names = c(NA, -4L), .Names = c("Surname", 
+"ID_play", "Wins", "Loss", "Sets.F", "Sets.A", "Games.F", "Games.A"
+))
