@@ -36,3 +36,7 @@
 2.  Presentation of tournament ladder (+)
 3.  Weeks as number 1 (consecutive/total)
 4.  Weeks in top 10 (consecutive/total)
+
+### 1.1.8 (21 Apr 2015)
+1.  New ranking calculation (exponential average to be smoothed)
+2.  Road to finals (fixed mistake in Qualified/No Chance - take into acc. previous year ATP Finals)
