@@ -29,6 +29,9 @@ g.wc <- max(players$ID_play)
 #db_tournaments<-read.csv("tournaments.txt")
 #db_ranking<-mk_ranking(players,curr_date+days(1))
 
+#db_ranking <- NewMakeRanking(curr_date+days(1))
+
+
 # db_matches<-m_simulator(1,2,sets,tournament,rnd,surface,curr_date)
 
 #3  do zmiennej wynik zapisujesz wynik meczu
