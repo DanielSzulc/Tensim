@@ -15,7 +15,7 @@
 ### 1.1.4 (13 Apr 2015)
 1.  Creating new season calendar (by adding one year and recalculating weeks)
 2.  Presenting drop points in the next weekhyjuuuu
-3.  Match preview improvement - current season result + past result in current tournament
+3.  Match preview improvement - current season result + past result in current tournament (+  pretty table formating to be continued)
 
 ### 1.1.5 (14 Apr 2015)
 1.  Torunament ladder (draw) (+ for tournaments up to 16 players)
@@ -40,3 +40,4 @@
 ### 1.1.8 (21 Apr 2015)
 1.  New ranking calculation (exponential average to be smoothed)
 2.  Road to finals (fixed mistake in Qualified/No Chance - take into acc. previous year ATP Finals)
+3.  New ATP Super 9 view/ and Grand Slam
