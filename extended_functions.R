@@ -1,5 +1,7 @@
 library(dplyr)
 library(knitr)
+library(tidyr)
+
 qualify <-function(app_players,wildcards,total_draw=8,seeded=2) {
         selecting <- db_ranking %>% filter(Date==max(Date)) %>%
                 filter(Id_pl %in% setdiff(app_players,wildcards)) %>%
@@ -387,4 +389,42 @@ GraphLeaderCharts <- function() {
              ylab="", main=year(max(db_ranking$Date)))
         legend("bottomright",pch=19,col=unique(z$Id_pl), legend=unique(z$Surname), cex=0.8,bty="n" )
 
+}
+CreateMatrixAchievment <- function(category, year){
+        tours <- filter(db_tournaments,Category==category) %>%
+                select(Name_of_Tournament)
+        tours <- tours[[1]]
+        tmp <- select_results(tournament = tours, years = year)
+        
+        tmp <- select(tmp, ID_play,Tournament,Rnd,Result) %>%  
+                
+                group_by(Tournament, ID_play) %>% 
+                
+                summarise (Achieve=min(Rnd), R=min(Result)) %>%
+                mutate(Achieve=ifelse(R=="Win",0,Achieve)) %>% select(-R) %>% 
+                ungroup %>%
+                spread(key = Tournament,value = Achieve)
+        tmp.rank<-filter(db_ranking, Date==max(Date)) %>% select(Id_pl,Pos) %>%
+                rename(ID_play=Id_pl)
+        tmp.surname <-select(players,ID_play,Surname)
+        tmp<-plyr::join(tmp,tmp.rank, by="ID_play")
+        tmp<-plyr::join(tmp,tmp.surname,by="ID_play")
+        tmp<-select(tmp, Surname, Pos,2:(ncol(tmp)-2)) %>% arrange(Pos)
+
+        invisible(tmp)
+}
+PrintMatrixAchievement <- function(category=2, year) {
+        options<-"```{r set-options, echo=FALSE, cache=FALSE}
+        options(width=130)
+        ```"
+        open<-"```{r echo=FALSE, fig.width=11, results=\"asis\"}"
+        close<-"```"
+        content <- paste("tmp<-CreateMatrixAchievment(",category,",",year,")",sep="")
+        content2 <-paste("library(xtable)","tmp<-as.data.frame(tmp)", 
+        "print(xtable(tmp, digits=0),type=\"html\",include.rownames=FALSE)", 
+        sep="; ")
+        print(content)
+        writeLines(c(options,open,content,content2,close),"matrix_achieve.Rmd")
+        knit2html("matrix_achieve.Rmd",quiet = TRUE)
+        browseURL("matrix_achieve.html")
 }
